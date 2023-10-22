@@ -1,6 +1,6 @@
-package com.example.wuline;
+package ru.vsu.cs.tulitskayte_d_v;
 
-import com.example.wuline.drawers.*;
+import ru.vsu.cs.tulitskayte_d_v.drawers.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
@@ -10,6 +10,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import ru.vsu.cs.tulitskayte_d_v.drawers.GraphicsContextPixelDrawer;
+import ru.vsu.cs.tulitskayte_d_v.drawers.LineDrawer;
+import ru.vsu.cs.tulitskayte_d_v.drawers.WuLineDrawer;
 
 import java.util.ArrayList;
 

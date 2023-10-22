@@ -1,4 +1,4 @@
-package com.example.wuline;
+package ru.vsu.cs.tulitskayte_d_v;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

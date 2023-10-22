@@ -1,4 +1,4 @@
-package com.example.wuline.drawers;
+package ru.vsu.cs.tulitskayte_d_v.drawers;
 import javafx.scene.paint.Color;
 
 public interface PixelDrawer {

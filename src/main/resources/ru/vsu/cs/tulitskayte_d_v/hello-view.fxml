@@ -4,6 +4,6 @@
 <?import javafx.scene.canvas.Canvas?>
 
 <AnchorPane fx:id="anchorPane" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.wuline.HelloController">
+            fx:controller="ru.vsu.cs.tulitskayte_d_v.HelloController">
     <Canvas fx:id="canvas" width="800" height="600" AnchorPane.topAnchor="30.0"/>
 </AnchorPane>

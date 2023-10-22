@@ -3,8 +3,8 @@ module com.example.wuline {
     requires javafx.fxml;
 
 
-    opens com.example.wuline to javafx.fxml;
-    exports com.example.wuline;
-    exports com.example.wuline.drawers;
-    opens com.example.wuline.drawers to javafx.fxml;
+    opens ru.vsu.cs.tulitskayte_d_v to javafx.fxml;
+    exports ru.vsu.cs.tulitskayte_d_v;
+    exports ru.vsu.cs.tulitskayte_d_v.drawers;
+    opens ru.vsu.cs.tulitskayte_d_v.drawers to javafx.fxml;
 }
