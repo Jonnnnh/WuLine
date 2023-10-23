@@ -1,5 +1,6 @@
 package ru.vsu.cs.tulitskayte_d_v;
 
+import javafx.scene.transform.Scale;
 import ru.vsu.cs.tulitskayte_d_v.drawers.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -34,14 +35,40 @@ public class HelloController {
     @FXML
     private void initialize() {
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-        GraphicsContextPixelDrawer pixelDrawer = new GraphicsContextPixelDrawer(graphicsContext);
-        lineDrawer = new WuLineDrawer(pixelDrawer);
+        lineDrawer = new WuLineDrawer(graphicsContext);
         anchorPane.prefWidthProperty().addListener((ov, oldValue, newValue) -> canvas.setWidth(newValue.doubleValue()));
         anchorPane.prefHeightProperty().addListener((ov, oldValue, newValue) -> canvas.setHeight(newValue.doubleValue()));
         canvas.setOnMouseClicked(this::handlePrimaryClick);
         canvas.setOnMousePressed(this::handleMousePressed);
-        canvas.setOnScroll(this::handleScroll);
         canvas.setOnMouseDragged(this::handleMouseDragged);
+        canvas.setOnMouseMoved(this::mouseMoved);
+
+        canvas.setOnScroll(event -> {
+            double zoomFactor = 1.1;
+            double deltaY = event.getDeltaY();
+
+            if (deltaY < 0) {
+                zoomFactor = 1 / zoomFactor;
+            }
+
+            Scale scale = new Scale();
+            scale.setPivotX(event.getX());
+            scale.setPivotY(event.getY());
+            scale.setX(canvas.getScaleX() * zoomFactor);
+            scale.setY(canvas.getScaleY() * zoomFactor);
+
+            canvas.getTransforms().add(scale);
+            event.consume();
+        });
+    }
+
+
+    Point2D last = new Point2D(0, 0);
+
+    @FXML
+    private void mouseMoved(MouseEvent event) {
+        canvas.getGraphicsContext2D().clearRect(0, 0, 1000, 1000);
+        lineDrawer.drawLine(400, 300, (int) event.getX(), (int) event.getY(), Color.BLACK);
     }
 
     @FXML
@@ -75,26 +102,5 @@ public class HelloController {
             lineDrawer.drawLine((int) lastPoint.getX(), (int) lastPoint.getY(), (int) clickPoint.getX(), (int) clickPoint.getY(), Color.BLACK);
         }
         points.add(clickPoint);
-    }
-
-    private void handleScroll(ScrollEvent event) {
-        double delta = event.getDeltaY();
-        double zoom = Math.exp(ZOOM_INTENSITY * delta);
-        double newZoomFactor = Math.max(MIN_ZOOM, Math.min(zoomFactor * zoom, MAX_ZOOM));
-
-        if (newZoomFactor != zoomFactor) {
-            double scaleFactor = newZoomFactor / zoomFactor;
-            double mouseX = event.getSceneX();
-            double mouseY = event.getSceneY();
-            double adjustmentX = (1 - scaleFactor) * (mouseX - (canvas.getBoundsInParent().getMinX() + canvas.getTranslateX()));
-            double adjustmentY = (1 - scaleFactor) * (mouseY - (canvas.getBoundsInParent().getMinY() + canvas.getTranslateY()));
-
-            canvas.setScaleX(newZoomFactor);
-            canvas.setScaleY(newZoomFactor);
-            canvas.setTranslateX(canvas.getTranslateX() - adjustmentX);
-            canvas.setTranslateY(canvas.getTranslateY() - adjustmentY);
-
-            zoomFactor = newZoomFactor;
-        }
     }
 }
