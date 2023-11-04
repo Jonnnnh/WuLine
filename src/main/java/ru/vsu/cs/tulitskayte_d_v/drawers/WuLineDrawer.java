@@ -87,5 +87,6 @@ public class WuLineDrawer implements LineDrawer {
         drawWuLine(startX, startY, endX, endY, color);
         graphicsContext.fillRect(startX, startY, 1, 1);
         graphicsContext.fillRect(endX, endY, 1, 1);
+
     }
 }

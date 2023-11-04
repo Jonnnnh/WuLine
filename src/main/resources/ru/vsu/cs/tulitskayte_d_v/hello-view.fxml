@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPane" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.vsu.cs.tulitskayte_d_v.HelloController">
-    <Canvas fx:id="canvas" width="800" height="600" AnchorPane.topAnchor="30.0"/>
+<AnchorPane fx:id="anchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="ru.vsu.cs.tulitskayte_d_v.HelloController">
+    <Canvas fx:id="canvas" height="600" width="800" AnchorPane.topAnchor="30.0" />
+    <ColorPicker fx:id="colorPicker" layoutX="14.0" layoutY="1.0" />
+    <ColorPicker fx:id="backgroundColorPicker" layoutX="166.0" layoutY="1.0" />
 </AnchorPane>
